@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+android:background="@color/time_grey"
+    tools:context=".MainActivity">
+
+<TextView
+    android:visibility="gone"
+    android:layout_width="100dp"
+    android:layout_height="20dp"
+    android:text="click"
+    android:id="@+id/click"/>
+    <TextView
+        android:visibility="gone"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="click2"
+        android:id="@+id/click2"/>
+
+<!--     <com.hda.widget.SlidePoint.SlidepointWidget-->
+<!--         android:layout_width="wrap_content"-->
+<!--         android:layout_height="wrap_content"-->
+<!--         tools:ignore="MissingConstraints">-->
+
+<!--     </com.hda.widget.SlidePoint.SlidepointWidget>-->
+
+    <com.hda.widget.SlidePager.SlidePager
+        android:id="@+id/pager"
+        android:visibility="gone"
+android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+<!--    <com.hda.widget.Pattern.Pattern-->
+<!--        android:id="@+id/ppp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+
+    <com.hda.widget.HRecyclerView
+        android:id="@+id/enable"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.hda.widget.HRecyclerView
+    android:id="@+id/un_enable"
+    android:visibility="gone"
+    android:layout_width="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_height="wrap_content"
+    />
+
+<!--    <com.hda.widget.WaveRippleView-->
+<!--        android:background="#fff"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_height="200dp"/>-->
+
+    <com.hda.widget.DanceVIew
+        android:layout_width="18dp"
+        android:layout_height="18dp" />
+</LinearLayout>
