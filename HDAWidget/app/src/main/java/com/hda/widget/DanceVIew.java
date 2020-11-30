@@ -10,9 +10,6 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-
-import androidx.annotation.Nullable;
 
 import java.util.Random;
 
@@ -27,13 +24,14 @@ public class DanceVIew extends View {
     int temp_dx2=0;
     int temp_dx3=0;
     int step=10;
-    int delay=120;
+    int delay=200;
+    boolean stop=false;
 
     public DanceVIew(Context context) {
         super(context);
         init();
     }
-    public DanceVIew(Context context, @Nullable AttributeSet attrs) {
+    public DanceVIew(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
@@ -44,17 +42,18 @@ public class DanceVIew extends View {
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
         path = new Path();
-        start();
+
     }
 
-
     public void start(){
+        stop=false;
         new Thread(new Runnable() {
             @Override
             public void run() {
                 boolean flag3=false;
                 dx3=getRandomNumber2();
-                while (true) {
+                while (true&&!stop) {
+                    Log.e("++++'",stop+"");
                     try {
                         Thread.sleep(delay);
                     } catch (InterruptedException e) {
@@ -74,7 +73,7 @@ public class DanceVIew extends View {
                             dx3=getRandomNumber2();
                         }
                     }
-                    invalidate();
+                    postInvalidate();
                 }
             }
         }).start();
@@ -85,7 +84,7 @@ public class DanceVIew extends View {
             public void run() {
                 boolean flag3=false;
                 dx=getRandomNumber2();
-                while (true) {
+                while (true&&!stop) {
                     try {
                         Thread.sleep(delay);
                     } catch (InterruptedException e) {
@@ -105,7 +104,7 @@ public class DanceVIew extends View {
                             dx=getRandomNumber2();
                         }
                     }
-                    invalidate();
+                    postInvalidate();
                 }
             }
         }).start();
@@ -115,7 +114,7 @@ public class DanceVIew extends View {
             public void run() {
                 boolean flag3=false;
                 dx2=getRandomNumber2();
-                while (true) {
+                while (true&&!stop) {
                     try {
                         Thread.sleep(delay);
                     } catch (InterruptedException e) {
@@ -135,14 +134,16 @@ public class DanceVIew extends View {
                             dx2=getRandomNumber2();
                         }
                     }
-
-                    Log.e("------",dx2+"");
-                    invalidate();
+                    postInvalidate();
                 }
             }
         }).start();
     }
 
+
+    public void stop(){
+        stop=true;
+    }
     public Integer getRandomNumber2() {
         Integer min = 0;
         Integer max = getHeight();
@@ -159,6 +160,8 @@ public class DanceVIew extends View {
     @Override
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
+        Log.e("===","onDraw"+temp_dx);
+        step=getHeight()*1/8;
         RectF r1 = new RectF();
         r1.left = 0;
         r1.right = getWidth()/7;
